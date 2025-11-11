@@ -2,14 +2,18 @@ import ResponsiveAppBar from "../header/header";
 import RowAndColumnSpacing from "../footer/footer";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-const Wrapper: React.FC= ({ children }:any) => {
+import { ReactNode } from "react";
+interface props {
+  children: ReactNode
+}
+const Wrapper: React.FC<props> = ({ children }) => {
   return (
     <>
       {/* <ResponsiveAppBar /> */}
-      <Header/>
+      <Header />
       {children}
       {/* <RowAndColumnSpacing /> */}
-      <Footer/>
+      <Footer />
     </>
   );
 };
