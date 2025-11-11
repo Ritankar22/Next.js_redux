@@ -1,143 +1,385 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+//.........................................//
+
+// import React from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
+// import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+// import { useDispatch, useSelector } from "react-redux";
+// import { handleLoggedout } from "@/redux/authSlice/authSlice";
+// import { useRouter } from "next/router";
+
+// export default function Header() {
+//   const dispatch = useDispatch();
+//   const { isLogin } = useSelector((state: any) => state.Auth);
+//   const router = useRouter();
+
+//   const iconStyle: React.CSSProperties = {
+//     color: "white",
+//     transition: "color 0.3s ease",
+//   };
+
+//   const buttonStyle: React.CSSProperties = {
+//     padding: "8px 16px",
+//     borderRadius: "6px",
+//     border: "none",
+//     cursor: "pointer",
+//     fontSize: "16px",
+//     fontWeight: "bold",
+//     transition: "background 0.3s ease",
+//   };
+
+//   const Logout = () => {
+//     dispatch(handleLoggedout(""));
+//     router.push("/"); // redirect to home after logout
+//   };
+
+//   // Menu items with paths
+//   const menuItems = [
+//     { name: "Home", path: "/" },
+//     { name: "About", path: "/cms/about" },
+//     { name: "Create Post", path: "/cms/createPost" },
+//     { name: "Post List", path: "/cms/postList" },
+//     { name: "Contact", path: "/cms/contact" },
+//     { name: "ProfileDetails", path: "/auth/profileDetails" },
+//   ];
+
+//   return (
+//     <header
+//       style={{
+//         background: "linear-gradient(135deg, #203a43, #2c5364)",
+//         color: "white",
+//         padding: "20px 60px",
+//         display: "flex",
+//         justifyContent: "space-between",
+//         alignItems: "center",
+//         flexWrap: "wrap",
+//       }}
+//     >
+//       {/* Logo */}
+//       <div style={{ fontSize: "24px", fontWeight: "bold" }}>
+//         <a
+//           onClick={() => router.push("/")}
+//           style={{ color: "white", textDecoration: "none", cursor: "pointer" }}
+//         >
+//           Dummy
+//         </a>
+//       </div>
+
+//       {/* Navigation */}
+//       <nav style={{ margin: "10px 0" }}>
+//         <ul
+//           style={{
+//             display: "flex",
+//             gap: "30px",
+//             listStyle: "none",
+//             margin: 0,
+//             padding: 0,
+//             flexWrap: "wrap",
+//             justifyContent: "center",
+//           }}
+//         >
+//           {menuItems.map((item) => {
+//             const isActive = router.pathname === item.path;
+//             return (
+//               <li key={item.name}>
+//                 <span
+//                   style={{
+//                     color: isActive ? "#FFDD00" : "white",
+//                     textDecoration: "none",
+//                     fontSize: "16px",
+//                     cursor: "pointer",
+//                     transition: "color 0.3s ease",
+//                     borderBottom: isActive ? "2px solid #FFDD00" : "none",
+//                     paddingBottom: "4px",
+//                   }}
+//                   onClick={() => router.push(item.path)}
+//                   onMouseEnter={(e) => {
+//                     if (!isActive) e.currentTarget.style.color = "#FFDD00";
+//                   }}
+//                   onMouseLeave={(e) => {
+//                     if (!isActive) e.currentTarget.style.color = "white";
+//                   }}
+//                 >
+//                   {item.name}
+//                 </span>
+//               </li>
+//             );
+//           })}
+//         </ul>
+//       </nav>
+
+//       {/* Social + Auth Buttons */}
+//       <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+//         {/* Email */}
+//         <a href="mailto:info@jobjolt.com" style={iconStyle}>
+//           <FontAwesomeIcon icon={faEnvelope} size="lg" />
+//         </a>
+//         {/* Instagram */}
+//         <a href="#" style={iconStyle}>
+//           <FontAwesomeIcon icon={faInstagram} size="lg" />
+//         </a>
+//         {/* Facebook */}
+//         <a href="#" style={iconStyle}>
+//           <FontAwesomeIcon icon={faFacebook} size="lg" />
+//         </a>
+
+//         {/* Sign In */}
+//         <button
+//           style={{
+//             ...buttonStyle,
+//             background: "transparent",
+//             border: "1px solid white",
+//             color: "white",
+//           }}
+//           onMouseEnter={(e) => {
+//             e.currentTarget.style.background = "#FFDD00";
+//             e.currentTarget.style.color = "#0D0B4C";
+//           }}
+//           onMouseLeave={(e) => {
+//             e.currentTarget.style.background = "transparent";
+//             e.currentTarget.style.color = "white";
+//           }}
+//           onClick={() => router.push("/auth/login")}
+//         >
+//           Sign In
+//         </button>
+
+//         {/* Sign Up */}
+//         <button
+//           style={{
+//             ...buttonStyle,
+//             background: "#FFDD00",
+//             color: "#0D0B4C",
+//           }}
+//           onMouseEnter={(e) => {
+//             e.currentTarget.style.background = "white";
+//           }}
+//           onMouseLeave={(e) => {
+//             e.currentTarget.style.background = "#FFDD00";
+//           }}
+//           onClick={() => router.push("/auth/register")}
+//         >
+//           Sign Up
+//         </button>
+
+//         {isLogin && (
+//           <button
+//             onClick={Logout}
+//             style={{
+//               ...buttonStyle,
+//               background: "#FFDD00",
+//               color: "#0D0B4C",
+//             }}
+//             onMouseEnter={(e) => {
+//               e.currentTarget.style.background = "white";
+//             }}
+//             onMouseLeave={(e) => {
+//               e.currentTarget.style.background = "#FFDD00";
+//             }}
+//           >
+//             LogOut
+//           </button>
+//         )}
+//       </div>
+//     </header>
+//   );
+// }
+
+//......................................
+
+
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLoggedout } from "@/redux/authSlice/authSlice";
+import { useRouter } from "next/router";
+
+export default function Header() {
+  const dispatch = useDispatch();
+  const { isLogin } = useSelector((state: any) => state.Auth);
+  const router = useRouter();
+
+  const iconStyle: React.CSSProperties = {
+    color: "white",
+    transition: "color 0.3s ease",
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    padding: "8px 16px",
+    borderRadius: "6px",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
+    transition: "background 0.3s ease",
+  };
+
+  const Logout = () => {
+    dispatch(handleLoggedout(""));
+    router.push("/"); // redirect to home after logout
+  };
+
+  // Menu items (only visible when logged in)
+  const menuItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/cms/about" },
+    { name: "Create Post", path: "/cms/createPost" },
+    { name: "Post List", path: "/cms/postList" },
+    { name: "Contact", path: "/cms/contact" },
+    { name: "ProfileDetails", path: "/auth/profileDetails" },
+  ];
+
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+    <header
+      style={{
+        background: "linear-gradient(135deg, #203a43, #2c5364)",
+        color: "white",
+        padding: "20px 60px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      {/* Logo */}
+      <div style={{ fontSize: "24px", fontWeight: "bold" }}>
+        <a
+          onClick={() => router.push("/")}
+          style={{ color: "white", textDecoration: "none", cursor: "pointer" }}
+        >
+          Dummy
+        </a>
+      </div>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              //   onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              //   anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              //   open={Boolean(anchorElNav)}
-              //   onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+      {/* Navigation (visible only if logged in) */}
+      {isLogin && (
+        <nav style={{ margin: "10px 0" }}>
+          <ul
+            style={{
+              display: "flex",
+              gap: "30px",
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+              flexWrap: "wrap",
+              justifyContent: "center",
             }}
           >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                // onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              //   anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+            {menuItems.map((item) => {
+              const isActive = router.pathname === item.path;
+              return (
+                <li key={item.name}>
+                  <span
+                    style={{
+                      color: isActive ? "#FFDD00" : "white",
+                      textDecoration: "none",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      transition: "color 0.3s ease",
+                      borderBottom: isActive ? "2px solid #FFDD00" : "none",
+                      paddingBottom: "4px",
+                    }}
+                    onClick={() => router.push(item.path)}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.color = "#FFDD00";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.color = "white";
+                    }}
+                  >
+                    {item.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      )}
+
+      {/* Social + Auth Buttons */}
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        {/* Social Icons - visible only when logged in */}
+        {isLogin && (
+          <>
+            <a href="mailto:info@jobjolt.com" style={iconStyle}>
+              <FontAwesomeIcon icon={faEnvelope} size="lg" />
+            </a>
+            <a href="#" style={iconStyle}>
+              <FontAwesomeIcon icon={faInstagram} size="lg" />
+            </a>
+            <a href="#" style={iconStyle}>
+              <FontAwesomeIcon icon={faFacebook} size="lg" />
+            </a>
+          </>
+        )}
+
+        {/* Show Sign In / Sign Up only if NOT logged in */}
+        {!isLogin && (
+          <>
+            <button
+              style={{
+                ...buttonStyle,
+                background: "transparent",
+                border: "1px solid white",
+                color: "white",
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#FFDD00";
+                e.currentTarget.style.color = "#0D0B4C";
               }}
-              //   open={Boolean(anchorElUser)}
-              //   onClose={handleCloseUserMenu}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "white";
+              }}
+              onClick={() => router.push("/auth/login")}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              Sign In
+            </button>
+
+            <button
+              style={{
+                ...buttonStyle,
+                background: "#FFDD00",
+                color: "#0D0B4C",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#FFDD00";
+              }}
+              onClick={() => router.push("/auth/register")}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
+
+        {/* Logout visible only when logged in */}
+        {isLogin && (
+          <button
+            onClick={Logout}
+            style={{
+              ...buttonStyle,
+              background: "#FFDD00",
+              color: "#0D0B4C",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "white";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#FFDD00";
+            }}
+          >
+            LogOut
+          </button>
+        )}
+      </div>
+    </header>
   );
 }
-export default ResponsiveAppBar;
+

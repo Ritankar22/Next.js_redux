@@ -3,8 +3,9 @@ export const endPoints = {
         login:'/auth/login',
         profile:'/auth/profile',
         register:'/auth/register',
-        updatePassword:'/auth/update-password',
+        updatePassword:`/auth/update-password`,
         reset:'/auth/reset-password-link',
+        resetPassword:`/auth/reset-password`,
         otp:'/auth/verify-otp',
 
     },

@@ -1,11 +1,15 @@
 import ResponsiveAppBar from "../header/header";
 import RowAndColumnSpacing from "../footer/footer";
+import Footer from "../footer/footer";
+import Header from "../header/header";
 const Wrapper: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <ResponsiveAppBar />
+      {/* <ResponsiveAppBar /> */}
+      <Header/>
       {children}
-      <RowAndColumnSpacing />
+      {/* <RowAndColumnSpacing /> */}
+      <Footer/>
     </>
   );
 };
